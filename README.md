@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Link in which the app is hosted 
 (https://phonebook-suresh-angular.firebaseapp.com)
 
-##TO run it in a local server follow the following steps
+## TO run it in a local server follow the following steps
 - clone it to a local repository.
 - run a npm install command in the source folder.
 - make sure angular client and node.js is installed.
