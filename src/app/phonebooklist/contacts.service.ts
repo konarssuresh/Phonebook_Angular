@@ -32,6 +32,22 @@ export class ContactsService {
 
   }
 
+  updateContact(contact:Contact):Observable<Contact>{
+    let options=new HttpHeaders({"Content-Type":"application/json"});
+    return this.http.put<Contact>(this.contactsUrl,contact,{headers:options}).pipe(
+      tap(data => console.log("updated contact "+data.Name))
+    )
+  }
+
+  deleteContact(id:number){
+    let url=this.contactsUrl+"/"+id;
+    return this.http.delete(url).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+
+
   handleError(err:HttpErrorResponse){
 
     let errMsg:string;

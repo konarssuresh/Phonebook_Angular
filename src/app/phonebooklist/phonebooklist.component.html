@@ -6,11 +6,13 @@
         <th>Id</th>
         <th>Name</th>
         <th>Number</th>
+        <th>Actions</th>
       </tr>
-      <tr *ngFor="let contact of contactsTempVal">
-        <td>{{contact.id}}</td>
-        <td>{{contact.Name}}</td>
-        <td>{{contact.phoneNumber}}</td>
+      <tr *ngFor="let contactr of contactsTempVal">
+        <td>{{contactr.id}}</td>
+        <td>{{contactr.Name}}</td>
+        <td>{{contactr.phoneNumber}}</td>
+        <td><button class="btn btn-danger" (click)='deleteContact(contactr.id)'>Delete</button></td>
       </tr>
     </thead>
   </table>

@@ -38,9 +38,20 @@ export class PhonebooklistComponent implements OnInit {
     this.ContactService.getContacts().subscribe(contacts => {this.contacts=contacts; this.contactsTempVal=this.contacts;} ,err => this.errorMsg=<any>err)
   }
 
+  deleteContact(id:number){
+    this.ContactService.deleteContact(id);
+    this.contacts=this.contacts.filter((contact)=>{
+      if(contact.id != id){
+        console.log(id);
+        return true;
+      }
+    });
+    this.contactsTempVal=this.contacts;
+  }
+
   onSubmit(){
     if(this.contacts.filter((contact)=>{
-      return contact.Name.search(this.contact.Name) != -1;
+      return (contact.Name.toLowerCase().search(this.contact.Name.toLowerCase()) != -1 );
     }).length==0){
       this.AlreadyExistsErrorMsg=null;
       var contactToAdd=new Contact();
@@ -48,7 +59,12 @@ export class PhonebooklistComponent implements OnInit {
       contactToAdd.phoneNumber=this.contact.phoneNumber;
       this.ContactService.addContact(contactToAdd).subscribe(data=>{this.contacts.push(data);this.contactsTempVal=this.contacts});
     }else{
-     this.AlreadyExistsErrorMsg= "this contact already exists";
+     this.contacts.forEach((contact)=>{
+       if(contact.Name.toLowerCase()===this.contact.Name.toLowerCase()){
+         contact.phoneNumber=this.contact.phoneNumber;
+         this.ContactService.updateContact(contact);
+       }
+     })
     }
   }
 }
