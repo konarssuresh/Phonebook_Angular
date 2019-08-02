@@ -1,0 +1,35 @@
+<div class="jumbotron">
+    <h6 class="text-center">Contact List</h6>
+  <table class="table ">
+    <thead>
+      <tr class="thead-dark">
+        <th>Id</th>
+        <th>Name</th>
+        <th>Number</th>
+      </tr>
+      <tr *ngFor="let contact of contactsTempVal">
+        <td>{{contact.id}}</td>
+        <td>{{contact.Name}}</td>
+        <td>{{contact.phoneNumber}}</td>
+      </tr>
+    </thead>
+  </table>
+</div>
+<form #addContactForm="ngForm" (ngSubmit)="onSubmit()">
+  <h3>Add New Contact</h3>
+  <div class="form-group">
+        <label>Name</label>
+        <input [(ngModel)]="contact.Name" name="contactName" class="form-control" #contactName="ngModel" required  />
+    <p [hidden]="contactName.valid || contactName.pristine" class="alert alert-danger">Contact Name is Required</p>
+  </div>
+
+  <div class="form-group">
+          <label>Number</label>
+          <input class="form-control" [(ngModel)]="contact.phoneNumber" #number name="contactNumber" #contactNumber="ngModel" required minlength="10" maxlength="10" pattern="[0-9]*"/>
+        <p [hidden]="contactNumber.valid || contactNumber.pristine" class="alert alert-danger">Invalid Phone Number</p>
+  </div>
+  
+  <button [disabled]="!addContactForm.form.valid" type="submit" class="btn btn-primary form-control">Add Contact</button>
+
+</form>
+<p *ngIf="AlreadyExistsErrorMsg" class="text-danger">the contact {{contact.Name}} already exists </p>
