@@ -1,6 +1,6 @@
 <div class="jumbotron">
     <h6 class="text-center">Contact List</h6>
-  <table class="table ">
+  <table class="table table-hover">
     <thead>
       <tr class="thead-dark">
         <th>Id</th>
@@ -8,7 +8,7 @@
         <th>Number</th>
         <th>Actions</th>
       </tr>
-      <tr *ngFor="let contactr of contactsTempVal">
+      <tr *ngFor="let contactr of contactsTempVal" (click)="addContactValuesInEntry(contactr)">
         <td>{{contactr.id}}</td>
         <td>{{contactr.Name}}</td>
         <td>{{contactr.phoneNumber}}</td>
@@ -18,7 +18,7 @@
   </table>
 </div>
 <form #addContactForm="ngForm" (ngSubmit)="onSubmit()">
-  <h3>Add New Contact</h3>
+  <h3 class="text-center"><i class="fa fa-plus" aria-hidden="true"></i>Add/Update Contact</h3>
   <div class="form-group">
         <label>Name</label>
         <input [(ngModel)]="contact.Name" name="contactName" class="form-control" #contactName="ngModel" required  />

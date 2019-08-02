@@ -49,6 +49,11 @@ export class PhonebooklistComponent implements OnInit {
     this.contactsTempVal=this.contacts;
   }
 
+  addContactValuesInEntry(contact:Contact){
+    this.contact.Name=contact.Name;
+    this.contact.phoneNumber=contact.phoneNumber;
+  }
+
   onSubmit(){
     if(this.contacts.filter((contact)=>{
       return (contact.Name.toLowerCase().search(this.contact.Name.toLowerCase()) != -1 );
@@ -58,6 +63,7 @@ export class PhonebooklistComponent implements OnInit {
       contactToAdd.Name=this.contact.Name;
       contactToAdd.phoneNumber=this.contact.phoneNumber;
       this.ContactService.addContact(contactToAdd).subscribe(data=>{this.contacts.push(data);this.contactsTempVal=this.contacts});
+      this.ContactService.getContacts().subscribe((data) => console.log(data));
     }else{
      this.contacts.forEach((contact)=>{
        if(contact.Name.toLowerCase()===this.contact.Name.toLowerCase()){
