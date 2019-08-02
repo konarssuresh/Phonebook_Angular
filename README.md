@@ -2,9 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
 
-## Development server
+## Link in which the app is hosted 
+(https://phonebook-suresh-angular.firebaseapp.com)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+##TO run it in a local server follow the following steps
+- clone it to a local repository.
+- run a npm install command in the source folder.
+- make sure angular client and node.js is installed.
+- Run `ng serve` command for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
